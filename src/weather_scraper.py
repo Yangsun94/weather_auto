@@ -4,8 +4,6 @@ from selenium.webdriver.chrome.options import Options  # Chrome 옵션 설정
 from selenium.webdriver.support.ui import WebDriverWait  # 요소 로딩 대기
 from selenium.webdriver.support import expected_conditions as EC  # 대기 조건
 from selenium.common.exceptions import TimeoutException, NoSuchElementException  # 예외 처리
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 import sys
 import time  # 시간 지연
 import os  # 환경변수 접근
@@ -28,11 +26,22 @@ def get_weather_info():
     options.add_experimental_option('useAutomationExtension', False)  # 자동화 확장 비활성화
 
     driver = None
-    try:
-        # ChromeDriverManager로 드라이버 자동 설치
-        service = Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
 
+    try:
+        # Docker환경 확인 및 ChromeDriver 경로 설정
+        if os.path.exists('/usr/local/bin/chromedriver'):
+            print("Docker 환경에서 시스템 ChromeDriver 사용")
+            from selenium.webdriver.chrome.service import Service
+            service = Service('/usr/local/bin/chromedriver')
+
+        else:
+            # 로컬 환경 ChromeDriverManager 사용
+            print("로컬 환경에서 ChromeDriverManager 사용")
+            from webdriver_manager.chrome import ChromeDriverManager
+            from selenium.webdriver.chrome.service import Service
+            service = Service(ChromeDriverManager().install())
+
+        driver = webdriver.Chrome(service=service, options=options)
         driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         driver.get("https://www.weather.go.kr")
 
@@ -65,6 +74,9 @@ def get_weather_info():
         return None
     except Exception as e:
         print(f"날씨 정보 수집중 오류 발생: {e}")
+        import traceback
+        print("상세 오류 정보")
+        traceback.print_exc()
         if driver:
             try:
                 driver.save_screenshot("debug_screenshot.png")
