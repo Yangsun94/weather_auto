@@ -1,0 +1,23 @@
+#  Python 캐시/컴파일 파일 (자동 생성되는 불필요한 파일들)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 가상환경 폴더
+venv/
+# 환경변수 파일 (비밀번호, 토큰 등 민감정보 저장용)
+.env
+
+# PyCharm IDE 프로젝트 설정 폴더
+.idea/
+# VS Code IDE 설정 폴더
+.vscode/
+
+# 테스트 관련 캐시/로그
+*.log
+*.pytest_cache/
+.coverage
+
+# 로컬에서만 쓰는 개인 설정 파일 (예: 비밀번호 하드코딩된 경우)
+config.py

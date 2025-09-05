@@ -1,0 +1,29 @@
+# Git 관련 (코드 실행에 필요 없음)
+.git
+.gitignore
+
+# Docker 관련
+Dockerfile
+.dockerignore
+
+# IDE 관련 (개발툴 설정, Docker 이미지엔 불필요)
+.idea
+.vscode
+
+# Python 캐시/컴파일 파일
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# virtual env
+venv/
+
+#Tests
+*.pytest_cache
+.coverage
+*.log
+
+#Docs
+README.md
+*.md
