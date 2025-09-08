@@ -8,7 +8,7 @@ load_dotenv()
 weather_data = get_weather_info()
 
 if weather_data:
-    send_email(weather_data,os.getenv("EMAIL_USER"))
+    send_email(weather_data, os.getenv("EMAIL_USER"))
     print("이메일 발송 완료")
 
 else:

@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def send_email(weather_info,receiver):
+
+def send_email(weather_info, receiver):
     # 보낸 사람 계정은 환경변수에서 불러오는것으로 처리
     sender = os.getenv("EMAIL_USER")
     password = os.getenv("EMAIL_PASS")
@@ -16,14 +17,16 @@ def send_email(weather_info,receiver):
 
     print(f"이메일 준비 중.. 발송자 : {sender}, 수신자 : {receiver}")
 
-    msg = MIMEText(f"""
+    msg = MIMEText(
+        f"""
     오늘 날씨 정보 : 
     온도 : {weather_info["temperature"]}
     습도 : {weather_info["humidity"]}
     미세먼지 : {weather_info["dust"]}
     상태 : {weather_info["status"]}
-    """)
-    #메일 제목/ 보내는 사람/ 받는 사람
+    """
+    )
+    # 메일 제목/ 보내는 사람/ 받는 사람
     msg["Subject"] = "오늘의 날씨 알림"
     msg["From"] = sender
     msg["To"] = receiver
@@ -38,6 +41,7 @@ def send_email(weather_info,receiver):
     except Exception as e:
         print(f"이메일 발송 실패 : {e}")
         return False
+
 
 if __name__ == "__main__":
     test_weather = {

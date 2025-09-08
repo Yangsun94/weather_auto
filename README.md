@@ -64,6 +64,8 @@ weather-automation/
 ├── requirements.txt            # Python 패키지 목록
 ├── .env                        # 환경변수 (직접 생성 필요)
 ├── .gitignore
+├── Dockerfile                  # Docker 환경 설정
+├── .dockerignore
 └── README.md
 ```
 
@@ -140,8 +142,6 @@ A: 기상청 사이트 구조가 변경되었을 수 있습니다. 이슈를 등
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-## 📞 연락처
 
 프로젝트 링크: https://github.com/Yangsun94/weather_auto.git
 ---
