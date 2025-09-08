@@ -168,11 +168,11 @@ jobs:
     - name: Send success notification
       if: needs.build-and-deploy.result == 'success'
       run: |
-        echo "✅ CI/CD 파이프라인이 성공적으로 완료되었습니다!"
-        echo "🐳 Docker 이미지가 Docker Hub에 배포되었습니다."
+        echo "CI/CD 파이프라인이 성공적으로 완료되었습니다!"
+        echo "Docker 이미지가 Docker Hub에 배포되었습니다."
 
     - name: Send failure notification
       if: needs.build-and-deploy.result == 'failure'
       run: |
-        echo "❌ CI/CD 파이프라인이 실패했습니다."
-        echo "🔍 로그를 확인하여 문제를 해결해주세요."
+        echo "CI/CD 파이프라인이 실패했습니다."
+        echo "로그를 확인하여 문제를 해결해주세요."
