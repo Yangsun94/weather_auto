@@ -64,7 +64,7 @@ def test_mail_sender(monkeypatch):
         assert False, "예외가 발생해야 함"
     except Exception as e:
         assert "SMTP 연결 실패" in str(e)
-        print("모든 이메일 테스트 완료")
+        print("모든 이메일 테스트 완료했습니다")
 
 
 # 환경변수 테스트
