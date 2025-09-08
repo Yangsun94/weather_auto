@@ -44,16 +44,28 @@ jobs:
 
     - name: Install Chrome for testing
       run: |
+       # Google Chrome 설치
         wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
         sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
     
-        # ChromeDriver 수동 설치로 버전 문제 해결
-        CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-        wget -O /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%%.*})/chromedriver_linux64.zip"
-        sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+       # Chrome 버전 확인
+        CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
+        echo "Chrome 버전: $CHROME_VERSION"
+    
+        # 새로운 Chrome for Testing API 사용
+        CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE")
+        echo "ChromeDriver 버전: $CHROMEDRIVER_VERSION"
+    
+        # ChromeDriver 다운로드 및 설치
+        wget -O /tmp/chromedriver-linux64.zip "https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip"
+        sudo unzip /tmp/chromedriver-linux64.zip -d /tmp/
+        sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
+    
+        # 설치 확인
+        chromedriver --version
 
     - name: Run unit tests
       run: |
