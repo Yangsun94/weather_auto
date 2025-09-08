@@ -67,8 +67,8 @@ def test_environment_variable(monkeypatch):
 
     sample = {"temperature": "25℃", "humidity": "50%", "dust": "좋음","status": "맑음"}
     from src.mail_sender import send_email
-    print(f"환경변수 이메일 : {os.environ["EMAIL_USER"]}")
-    print(f"환경변수 패스워드 : {os.environ["EMAIL_PASSWORD"]}")
+    print(f"환경변수 이메일 : {os.environ.get('EMAIL_USER')}")
+    print(f"환경변수 패스워드 : {os.environ.get('EMAIL_PASSWORD')}")
 
     with pytest.raises(ValueError, match = "환경변수가 설정되지 않았습니다"):
         send_email(sample, "test@test.com")
