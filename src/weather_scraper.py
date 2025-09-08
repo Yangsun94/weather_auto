@@ -1,16 +1,15 @@
-from selenium import webdriver  # 웹 자동화 라이브러리
-from selenium.webdriver.common.by import By  # 요소 찾기 방법
-from selenium.webdriver.chrome.options import Options  # Chrome 옵션 설정
-from selenium.webdriver.support.ui import WebDriverWait  # 요소 로딩 대기
-from selenium.webdriver.support import expected_conditions as EC  # 대기 조건
-from selenium.common.exceptions import (
-    TimeoutException,
-    NoSuchElementException,
-)  # 예외 처리
-import sys
-import time  # 시간 지연
 import os  # 환경변수 접근
 import re
+import sys
+import time  # 시간 지연
+
+from selenium import webdriver  # 웹 자동화 라이브러리
+from selenium.common.exceptions import (NoSuchElementException,  # 예외 처리
+                                        TimeoutException)
+from selenium.webdriver.chrome.options import Options  # Chrome 옵션 설정
+from selenium.webdriver.common.by import By  # 요소 찾기 방법
+from selenium.webdriver.support import expected_conditions as EC  # 대기 조건
+from selenium.webdriver.support.ui import WebDriverWait  # 요소 로딩 대기
 
 
 def get_weather_info():
@@ -50,8 +49,8 @@ def get_weather_info():
         else:
             # 로컬 환경 ChromeDriverManager 사용
             print("로컬 환경에서 ChromeDriverManager 사용")
-            from webdriver_manager.chrome import ChromeDriverManager
             from selenium.webdriver.chrome.service import Service
+            from webdriver_manager.chrome import ChromeDriverManager
 
             service = Service(ChromeDriverManager().install())
 

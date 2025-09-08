@@ -1,7 +1,9 @@
 import os
-from src.weather_scraper import get_weather_info
-from src.mail_sender import send_email
+
 from dotenv import load_dotenv
+
+from src.mail_sender import send_email
+from src.weather_scraper import get_weather_info
 
 load_dotenv()
 

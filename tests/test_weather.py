@@ -1,5 +1,7 @@
 import os
+
 import pytest
+
 from src.weather_scraper import get_weather_info
 
 
@@ -105,8 +107,8 @@ def test_integration(monkeypatch):
     monkeypatch.setattr("src.weather_scraper.get_weather_info", mock_get_weather_info)
     monkeypatch.setattr("src.mail_sender.send_email", mock_send_email)
 
-    from src.weather_scraper import get_weather_info
     from src.mail_sender import send_email
+    from src.weather_scraper import get_weather_info
 
     weather_data = get_weather_info()
     assert weather_data is not None
