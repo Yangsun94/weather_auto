@@ -136,7 +136,7 @@ jobs:
 
     - name: Extract metadata
       id: meta
-      uses: docker/metadata-action@v5ff
+      uses: docker/metadata-action@v5f
       with:
         images: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_IMAGE }}
         tags: |
