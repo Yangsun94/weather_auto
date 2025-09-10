@@ -4,6 +4,7 @@ import pytest
 
 from src.weather_scraper import get_weather_info
 
+
 def test_weather_scraper():
     data = get_weather_info()
     assert "temperature" in data
@@ -116,4 +117,3 @@ def test_integration(monkeypatch):
     assert result == True
 
     print("통합 테스트 통과")
-

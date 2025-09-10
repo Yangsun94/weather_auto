@@ -7,10 +7,10 @@ from selenium import webdriver  # 웹 자동화 라이브러리
 from selenium.common.exceptions import NoSuchElementException  # 예외 처리
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options  # Chrome 옵션 설정
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By  # 요소 찾기 방법
 from selenium.webdriver.support import expected_conditions as EC  # 대기 조건
 from selenium.webdriver.support.ui import WebDriverWait  # 요소 로딩 대기
-from selenium.webdriver.chrome.service import Service
 
 
 def get_weather_info():
