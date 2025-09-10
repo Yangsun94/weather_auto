@@ -4,7 +4,6 @@ import pytest
 
 from src.weather_scraper import get_weather_info
 
-
 def test_weather_scraper():
     data = get_weather_info()
     assert "temperature" in data
@@ -71,13 +70,13 @@ def test_mail_sender(monkeypatch):
 def test_environment_variable(monkeypatch):
     # 환경변수를 빈 칸으로 설정
     monkeypatch.setenv("EMAIL_USER", "")
-    monkeypatch.setenv("EMAIL_PASSWORD", "")
+    monkeypatch.setenv("EMAIL_PASS", "")
 
     sample = {"temperature": "25℃", "humidity": "50%", "dust": "좋음", "status": "맑음"}
     from src.mail_sender import send_email
 
     print(f"환경변수 이메일 : {os.environ.get('EMAIL_USER')}")
-    print(f"환경변수 패스워드 : {os.environ.get('EMAIL_PASSWORD')}")
+    print(f"환경변수 패스워드 : {os.environ.get('EMAIL_PASS')}")
 
     with pytest.raises(ValueError, match="환경변수가 설정되지 않았습니다"):
         send_email(sample, "test@test.com")
@@ -117,3 +116,4 @@ def test_integration(monkeypatch):
     assert result == True
 
     print("통합 테스트 통과")
+

@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.options import Options  # Chrome 옵션 설정
 from selenium.webdriver.common.by import By  # 요소 찾기 방법
 from selenium.webdriver.support import expected_conditions as EC  # 대기 조건
 from selenium.webdriver.support.ui import WebDriverWait  # 요소 로딩 대기
+from selenium.webdriver.chrome.service import Service
 
 
 def get_weather_info():
@@ -42,14 +43,12 @@ def get_weather_info():
         # Docker환경 확인 및 ChromeDriver 경로 설정
         if os.path.exists("/usr/local/bin/chromedriver"):
             print("Docker 환경에서 시스템 ChromeDriver 사용")
-            from selenium.webdriver.chrome.service import Service
 
             service = Service("/usr/local/bin/chromedriver")
 
         else:
             # 로컬 환경 ChromeDriverManager 사용
             print("로컬 환경에서 ChromeDriverManager 사용")
-            from selenium.webdriver.chrome.service import Service
             from webdriver_manager.chrome import ChromeDriverManager
 
             service = Service(ChromeDriverManager().install())
